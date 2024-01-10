@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}"/>
+    <style>
+        header {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        body.dark-mode header {
+            background-color: #333;
+        }
+
+        .admin-container {
+            max-width: 800px;
+            box-sizing: border-box;
+            margin: 20px auto;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .username {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .user-management h2,
+        .profile-section h2 {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        body.dark-mode table {
+            th {
+                background-color: #333;
+                color: #ecf0f1;
+            }
+
+            td {
+                background-color: #444;
+                color: #ecf0f1;
+            }
+        }
+
+        body.dark-mode .admin-container {
+            background-color: #444;
+        }
+
+        .remove-btn {
+            background-color: transparent;
+            color: #e74c3c;
+            text-decoration: none;
+            border: 2px solid #e74c3c;
+            border-radius: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .remove-btn:hover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .success-msg {
+            color: green;
+        }
+
+        .failed-msg {
+            color: red;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .nav-links li {
+                margin-right: 10px;
+            }
+
+            .nav-links a {
+                display: flex;
+                align-content: center;
+                font-size: 9px;
+            }
+
+            .logo span {
+                font-size: 12px;
+            }
+
+            .dark-mode-dot {
+                width: 15px;
+                height: 15px;
+                margin-left: 5px;
+            }
+
+            .admin-container {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+            .remove-btn {
+                font-size: 8px;
+                padding: 4px 8px;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            .nav-links li {
+                margin-right: 5px;
+            }
+
+            .nav-links a {
+                display: flex;
+                align-content: center;
+                font-size: 8px;
+            }
+
+            .dark-mode-dot {
+                width: 12px;
+                height: 12px;
+                margin-left: 3px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th,
+            td {
+                padding: 4px;
+            }
+
+            .remove-btn {
+                padding: 3px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img alt="Logo" th:src="@{../static/img/logo.svg}">
+            <span>Admin Dashboard</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+
+            <th:block th:if="${currentUser}">
+                <li><a th:text="${currentUser.name}"></a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
+            </th:block>
+
+            <li class="dark-mode-dot" id="dark-mode-toggle" onclick="toggleDarkMode()"></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="admin-container">
+    <div class="header">
+        <span class="username">[[${currentUser.name}]]</span>
+    </div>
+
+    <!-- User Management Section -->
+    <div class="user-management">
+        <h2>Manage Users</h2>
+
+        <th:block th:if="${session.successMsg}">
+            <p class="success-msg" th:text="${session.successMsg}"></p>
+            <th:block th:text="${@userServiceImpl.removeSuccessMsg()}"></th:block>
+        </th:block>
+        <th:block th:if="${session.failedMsg}">
+            <p class="failed-msg" th:text="${session.failedMsg}"></p>
+            <th:block th:text="${@userServiceImpl.removeFailedMsg()}"></th:block>
+        </th:block>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${registeredUsers}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.address.displayAddress()}"></td>
+                <td>
+                    <a class="remove-btn" th:href="@{'/admin/removeUser/' + ${user.id}}">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+    </div>
+    <p class="footer-links">&copy; Designed by<a th:href="@{https://nikhiltaprania.github.io/}">Nikhil Kumar</a></p>
+</footer>
+
+<script th:src="@{../static/js/script.js}"></script>
+</body>
+</html>

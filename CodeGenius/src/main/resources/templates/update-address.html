@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Update Address</title>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}">
+    <style>
+        .form p {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form p.success-msg {
+            background-color: rgba(46, 204, 113, 0.8);
+            color: #fff;
+        }
+
+        .form p.failed-msg {
+            background-color: rgba(231, 76, 60, 0.8);
+            color: #fff;
+        }
+
+        .form {
+            width: 45%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #address-form {
+            display: none;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            text-align: center;
+            color: #3498db;
+            cursor: pointer;
+        }
+
+        #address-form p {
+            margin-bottom: 10px;
+        }
+
+        /* Large screens and desktops */
+        @media screen and (min-width: 1200px) {
+            .form {
+                width: 45%;
+            }
+        }
+
+        /* Medium screens and tablets */
+        @media screen and (max-width: 1199px) and (min-width: 768px) {
+            .form {
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Small screens and mobile devices */
+        @media screen and (max-width: 767px) {
+            .form {
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img alt="Logo" th:src="@{../static/img/logo.svg}">
+            <span>Code Genius</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+
+            <th:block th:if="${currentUser}">
+                <li><a th:text="${currentUser.name}"></a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
+            </th:block>
+
+            <li class="dark-mode-dot" id="dark-mode-toggle" onclick="toggleDarkMode()"></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <form class="form" method="post" th:action="@{'/user/updateUser/' + ${currentUser.email}}">
+        <h2>Address</h2>
+
+        <label for="city">City:</label>
+        <input id="city" name="city" th:required="required" th:value="${currentUser.address.city}" type="text">
+
+        <label for="state">State:</label>
+        <input id="state" name="state" th:required="required" th:value="${currentUser.address.state}" type="text">
+
+        <label for="pinCode">Pin Code:</label>
+        <input id="pinCode" name="pinCode" th:required="required" th:value="${currentUser.address.pinCode}"
+               type="number">
+
+        <th:block th:if="${session.successMsg}">
+            <p class="success-msg" th:text="${session.successMsg}"></p>
+            <th:block th:text="${@userServiceImpl.removeSuccessMsg()}"></th:block>
+        </th:block>
+        <th:block th:if="${session.failedMsg}">
+            <p class="failed-msg" th:text="${session.failedMsg}"></p>
+            <th:block th:text="${@userServiceImpl.removeFailedMsg()}"></th:block>
+        </th:block>
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+    </div>
+    <p class="footer-links">&copy; Designed by<a th:href="@{https://nikhiltaprania.github.io/}">Nikhil Kumar</a></p>
+</footer>
+
+<script th:src="@{../static/js/script.js}"></script>
+</body>
+
+</html>

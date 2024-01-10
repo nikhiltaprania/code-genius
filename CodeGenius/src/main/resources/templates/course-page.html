@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Courses</title>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}"/>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img alt="Logo" th:src="@{../static/img/logo.svg}">
+            <span>Courses</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+
+            <th:block th:if="${currentUser}">
+                <li><a th:text="${currentUser.name}"></a></li>
+                <li><a href="/user/address">Update Address</a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
+            </th:block>
+
+            <li class="dark-mode-dot" id="dark-mode-toggle" onclick="toggleDarkMode()"></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="course-container">
+    <div class="course-card">
+        <img alt="JAVA Image" th:src="@{../static/img/java.jpg}">
+        <h3>Mastering JAVA for Interviews</h3>
+        <p>Enhance your Java skills and excel in technical interviews. Dive deep into
+            core concepts, algorithms, and problem-solving techniques to confidently tackle Java-related interview
+            challenges.</p>
+        <button><a th:href="@{'/platform-page/java'}">Practice</a></button>
+    </div>
+
+    <div class="course-card">
+        <img alt="JavaScript Image" th:src="@{../static/img/javascript.jpg}">
+        <h3>JavaScript Interview Mastery</h3>
+        <p>Prepare for JavaScript-focused interviews by mastering essential concepts and advanced topics. It covers
+            everything from fundamental language features to real-world application scenarios, ensuring
+            you're well-prepared for technical discussions.</p>
+        <button><a th:href="@{'/platform-page/javascript'}">Practice</a></button>
+    </div>
+
+    <div class="course-card">
+        <img alt="Python Image" th:src="@{../static/img/python.jpg}">
+        <h3>Crack the Python Interview</h3>
+        <p>Acquire the skills needed to ace Python-related interviews. It provides in-depth coverage of
+            language fundamentals, data structures, and algorithms. Be ready to solve complex problems and
+            demonstrate
+            your Python expertise in interviews.</p>
+        <button><a th:href="@{'/platform-page/python'}">Practice</a></button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+    </div>
+    <p class="footer-links">&copy; Designed by<a th:href="@{https://nikhiltaprania.github.io/}">Nikhil Kumar</a></p>
+</footer>
+
+<script th:src="@{../static/js/script.js}"></script>
+</body>
+</html>

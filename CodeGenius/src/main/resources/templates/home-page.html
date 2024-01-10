@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Code Genius | Home</title>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}"/>
+    <style>
+        .main-container {
+            margin: 20px auto;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        body.dark-mode .main-container {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .try-now-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .try-now-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .try-now-btn:active {
+            transform: scale(0.98);
+        }
+
+        .home-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .description-container {
+            flex: 1;
+        }
+
+        .description {
+            padding-right: 20px;
+        }
+
+        .description h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .description p {
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        body.dark-mode .description h1 {
+            color: white;
+        }
+
+        body.dark-mode .description p {
+            color: white;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image img {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .home-content {
+                flex-direction: column;
+            }
+
+            .description-container,
+            .image-container {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .description {
+                padding: 20px;
+
+            }
+
+            .image img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .image img {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img alt="Logo" th:src="@{../static/img/logo.svg}">
+            <span>Code Genius</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="https://nikhiltaprania.github.io/">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li class="dark-mode-dot" id="dark-mode-toggle" onclick="toggleDarkMode()"></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="main-container">
+    <div class="home-content">
+        <div class="description-container">
+            <div class="description">
+                <h1>Code Genius</h1>
+                <p>An AI-powered self-interview preparation platform. This platform leverages the power of AI and
+                    natural language processing to simulate real interview scenarios, providing users with valuable
+                    feedback and resources to enhance their interview skills.</p>
+                <a class="try-now-btn" th:href="@{/course-page}">Try Now</a>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="image">
+                <img alt="Photo" th:src="@{../static/img/boy.png}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+    </div>
+    <p class="footer-links">&copy; Designed by<a th:href="@{https://nikhiltaprania.github.io/}">Nikhil Kumar</a></p>
+</footer>
+
+<script th:src="@{../static/js/script.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1;
+    color: #333;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #ecf0f1;
+}
+
+/* Navigation bar */
+header {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a,
+#nav-toggle {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.nav-links a:hover,
+#nav-toggle:hover {
+    color: #ecf0f1;
+}
+
+.dark-mode-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #333;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+body.dark-mode .dark-mode-dot {
+    background-color: #fff;
+}
+
+/* Course */
+.course-container {
+    max-width: 1000px;
+    margin: 20px auto 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.course-card {
+    background-color: #ecf0f1;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.course-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.course-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    color: #333;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.course-card button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.course-card a {
+    text-decoration: none;
+    color: white;
+}
+
+.course-card:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.course-card button:hover {
+    background-color: #2980b9;
+}
+
+.dark-mode .container {
+    background-color: #333;
+}
+
+.dark-mode .course-card {
+    background-color: #333;
+    color: #ecf0f1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .course-card img {
+    border-radius: 10px;
+}
+
+.dark-mode .course-card h3 {
+    color: #fff;
+}
+
+.dark-mode .course-card p {
+    color: #ccc;
+}
+
+.dark-mode .course-card button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.dark-mode .course-card button:hover {
+    background-color: #2980b9;
+}
+
+/* Platform */
+.container {
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 20px auto 80px;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.username {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 50vh;
+}
+
+.participant {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 100%;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.participant video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transform: scaleX(-1);
+}
+
+.participant-info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+body.dark-mode #output {
+    background-color: #333;
+    color: #ecf0f1;
+}
+
+.controls button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button#mute-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+button#video-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+button#end-call-btn {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+button#full-screen-btn {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.dark-mode button:hover {
+    opacity: 0.8;
+}
+
+.dark-mode button:active {
+    transform: scale(0.95);
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #ecf0f1;
+}
+
+.dark-mode header {
+    background-color: #333;
+}
+
+.dark-mode nav {
+    background-color: #333;
+}
+
+.dark-mode .container {
+    background-color: #333;
+}
+
+.dark-mode .participant {
+    background-color: #333;
+}
+
+.dark-mode .video-container {
+    background-color: #333;
+}
+
+.dark-mode button#mute-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.dark-mode button#video-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.dark-mode button#end-call-btn {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+footer {
+    display: flex;
+    background-color: #2ecc71;
+    justify-content: space-evenly;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+    color: #ecf0f1;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+    color: white;
+}
+
+.dark-mode footer {
+    background-color: #333;
+    color: #ecf0f1;
+}
+
+@media screen and (min-width: 1200px) {
+    .nav-links li {
+        margin-right: 15px;
+        display: inline-block;
+    }
+
+    .username {
+        font-size: 18px;
+    }
+
+    .logo span {
+        font-size: 20px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+
+    .controls button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    .dark-mode-dot {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Medium screens and tablets */
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    .nav-links li {
+        margin-right: 12px;
+        display: inline-block;
+    }
+
+    .username {
+        font-size: 14px;
+    }
+
+    .logo span {
+        font-size: 16px;
+    }
+
+    .nav-links a,
+    #nav-toggle {
+        font-size: 14px;
+    }
+
+    .controls button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Small screens and mobile devices */
+@media screen and (max-width: 767px) {
+    .nav-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-right: 0;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .nav-links a,
+    #nav-toggle {
+        font-size: 9px;
+        margin-right: 8px;
+    }
+
+    .username {
+        font-size: 12px;
+    }
+
+    .logo span {
+        font-size: 13px;
+    }
+
+    #output {
+        margin-top: 10px;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .controls button {
+        padding: 9px 10px;
+        font-size: 9px;
+    }
+
+    .dark-mode-dot {
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+    }
+
+    .video-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links a {
+        font-size: 9px;
+    }
+
+    footer p {
+        font-size: 9px;
+    }
+}

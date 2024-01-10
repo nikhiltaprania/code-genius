@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Platform | Code Genius</title>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}"/>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img alt="Logo" th:src="@{../static/img/logo.svg}">
+            <span>Code Genius</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+
+            <th:block th:if="${currentUser}">
+                <li><a th:text="${currentUser.name}"></a></li>
+                <li><a href="/user/address">Update Address</a></li>
+                <li><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
+            </th:block>
+
+            <li class="dark-mode-dot" id="dark-mode-toggle" onclick="toggleDarkMode()"></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="container-header">
+        <span class="username">[[${currentUser.name}]]</span>
+    </div>
+
+    <div class="video-container">
+        <div class="participant" id="remote-participant">
+            <video id="remote-video" loop muted playsinline>
+                <source th:src="@{../static/img/bot.webm}" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <span class="participant-info">Interviewer</span>
+        </div>
+
+        <div class="participant" id="local-participant">
+            <video autoplay id="local-video" muted playsinline></video>
+            <span class="participant-info">[[${currentUser.name}]]</span>
+        </div>
+    </div>
+
+    <div id="output"></div>
+
+    <div class="controls">
+        <button id="mute-btn" onclick="toggleMute()">Unmute</button>
+        <button id="video-btn" onclick="toggleVideo()">Camera</button>
+        <button id="end-call-btn" onclick="firstPrompt()">Start Interview</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+    </div>
+    <p class="footer-links">&copy; Designed by<a th:href="@{https://nikhiltaprania.github.io/}">Nikhil Kumar</a></p>
+</footer>
+
+<script th:inline="javascript">
+    let techStack = [[${techStack}]]; // Now you can use the 'techStack' variable in your JavaScript code
+</script>
+
+<script th:src="@{../static/js/script.js}"></script>
+<script th:src="@{../static/js/platform.js}"></script>
+</body>
+
+</html>
