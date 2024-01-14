@@ -25,7 +25,7 @@ Code Genius is a Spring Boot application designed to provide an AI-powered inter
 
 ### Code Genius Overview
 
-[![Code Genius Showcase](/CodeGenius/src/main/resources/static/img/home.png)](link_to_project_video)
+[![Code Genius Showcase](/CodeGenius/src/main/resources/static/img/home.png)](https://drive.google.com/file/d/1NFjNg26gDLgtxj3HD3pGm8c06hKzv87d/view?usp=drive_link)
 
 ### Review Pages
 
@@ -50,6 +50,19 @@ Code Genius is a Spring Boot application designed to provide an AI-powered inter
 - Java Development Kit (JDK) installed on your machine.
 - MySQL database installed and running.
 - Git installed for cloning the repository.
+
+## Steps
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/your-username/code-genius.git
+or download [CodeGenius-v0.0.1-SNAPSHOT.jar](https://github.com/nikhiltaprania/code-genius/releases/download/v0.0.1-SNAPSHOT/CodeGenius-0.0.1-SNAPSHOT.jar) file.
+
+2. **Run .jar file using command prompt:**
+   ```bash
+    java -jar CodeGenius-v0.0.1-SNAPSHOT.jar
+
+3. The application will start, and you can access it at http://localhost:8085.
 
 ## Feedback and Contributions
 
