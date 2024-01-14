@@ -23,8 +23,7 @@ Code Genius is a Spring Boot application designed to provide an AI-powered inter
 
 ## Project Showcase
 
-### Code Genius Overview
-
+### [<font size="5">&#9654;</font>](https://drive.google.com/file/d/1NFjNg26gDLgtxj3HD3pGm8c06hKzv87d/view?usp=drive_link) Code Genius Overview Video
 [![Code Genius Showcase](/CodeGenius/src/main/resources/static/img/home.png)](https://drive.google.com/file/d/1NFjNg26gDLgtxj3HD3pGm8c06hKzv87d/view?usp=drive_link)
 
 ### Review Pages
